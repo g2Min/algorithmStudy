@@ -1,4 +1,4 @@
-package first;
+package algo_시간복잡도;
 
 import java.io.BufferedReader;
 import java.io.IOException;
