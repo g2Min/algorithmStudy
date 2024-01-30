@@ -1,9 +1,8 @@
-package first;
+package algo_시간복잡도;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 
 public class question8 {
     public static void main(String[] args) throws IOException {
