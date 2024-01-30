@@ -1,11 +1,11 @@
-package second;
+package algo_완전탐색1;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class question1 {
+public class q1_콜라배달 {
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer str = new StringTokenizer(br.readLine());
