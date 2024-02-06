@@ -1,4 +1,4 @@
-package algo_그래프;
+package algo_그래프1;
 
 import java.io.BufferedReader;
 import java.io.IOException;
