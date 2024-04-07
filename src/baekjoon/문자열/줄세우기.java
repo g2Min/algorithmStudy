@@ -3,44 +3,38 @@ package baekjoon.문자열;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.StringTokenizer;
 
 public class 줄세우기 {
-    public static void main (String[] args) throws IOException{
+    public static void main (String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int N = Integer.parseInt(br.readLine()); // 테스트 케이스 개수
+        int P = Integer.parseInt(br.readLine()); // 테스트 케이스 개수
+        int[][] height = new int[P][21];
         StringTokenizer str;
-        StringBuilder sb = new StringBuilder();
-        int[][] arr = new int[N+1][21]; // 식별번호 + 학생 20명
-        for(int i=1; i<=N; i++){
+        for(int i=0; i<P; i++){
             str = new StringTokenizer(br.readLine());
-            arr[i][0] = Integer.parseInt(str.nextToken());
+            int index = Integer.parseInt(str.nextToken());
+            height[i][0] = index;
             for(int j=1; j<=20; j++){
-                arr[i][j] = Integer.parseInt(str.nextToken());
+                height[i][j] = Integer.parseInt(str.nextToken());
             }
         }
 
-        for(int i=1; i<=N; i++){
-            System.out.println(i + " " + func(arr, i));
-        }
-
-    }
-    private static int func(int[][] arr, int k){
-        int ans = 0;
-
-        for(int i=2; i<=20; i++){
-            for(int j=1; j<i; j++){
-                if(arr[k][i] < arr[k][j]){
-                    int temp = arr[k][i];
-                    for(int l=i-1; l>=j; l--){
-                        arr[k][l+1] = arr[k][l];
+        StringBuilder sb = new StringBuilder();
+        for(int i=0; i<P; i++){
+            int sum=0;
+            for(int j=1; j<=20; j++){ // 처음부터 비교
+                for(int k=j-1; k>=1; k--){ // 그 사이 비교값
+                    if(height[i][j] < height[i][k]){
+                        sum++;
                     }
-                    arr[k][1] = temp;
-                    ans += (i-1);
                 }
             }
+            sb.append(height[i][0] + " " + sum + "\n");
         }
-        return ans;
+        System.out.print(sb);
     }
 }
 

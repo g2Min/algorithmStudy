@@ -7,8 +7,8 @@ import java.io.InputStreamReader;
 public class ex3_최장길이공통부분문자열 {
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String S = br.readLine(); // 입력받은 문자열 S
-        String T = br.readLine(); // 입력받은 문자열 T
+        String S = br.readLine(); // 입력받은 baekjoon.문자열 S
+        String T = br.readLine(); // 입력받은 baekjoon.문자열 T
         int[][] LCS = new int[S.length()+1][T.length()+1];
         for(int i=1; i<=S.length(); i++){
             for(int j=1; j<=T.length(); j++){
