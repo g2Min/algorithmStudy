@@ -1,81 +1,35 @@
 package baekjoon.그래프;
 
+import org.w3c.dom.Node;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class dfs와_bfs {
-    static StringBuilder sb = new StringBuilder();
-    static boolean[] check;
-    static int[][] arr;
-
-    static int node, line, start;
-
-    static Queue<Integer> q = new LinkedList<>();
-
-    public static void main(String[] args) throws IOException {
-
+    public static void main(String[] args)throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        node = Integer.parseInt(st.nextToken());
-        line = Integer.parseInt(st.nextToken());
-        start= Integer.parseInt(st.nextToken());
-
-        arr = new int[node+1][node+1];
-        check = new boolean[node+1];
-
-        for(int i = 0 ; i < line ; i ++) {
-            StringTokenizer str = new StringTokenizer(br.readLine());
-
-            int a = Integer.parseInt(str.nextToken());
-            int b = Integer.parseInt(str.nextToken());
-
-            arr[a][b] = arr[b][a] =  1;
+        StringTokenizer str;
+        str = new StringTokenizer(br.readLine());
+        int N = Integer.parseInt(str.nextToken()); //정점개수
+        int M = Integer.parseInt(str.nextToken()); //간선개수
+        int V = Integer.parseInt(str.nextToken()); //탐색을 시작할 정점번호
+        List<Integer> graph[] = new List[N+1];
+        for(int i=1; i<=N; i++){
+            graph[i] = new ArrayList<>();
         }
-        //sb.append("\n");
-        dfs(start);
-        sb.append("\n");
-        check = new boolean[node+1];
-
-        bfs(start);
-
-        System.out.println(sb);
-
-    }
-    public static void dfs(int start) {
-
-        check[start] = true;
-        sb.append(start + " ");
-
-        for(int i = 0 ; i <= node ; i++) {
-            if(arr[start][i] == 1 && !check[i])
-                dfs(i);
+        for(int i=0; i<M; i++){
+            str = new StringTokenizer(br.readLine());
+            int src = Integer.parseInt(str.nextToken());
+            int dst = Integer.parseInt(str.nextToken());
+            graph[src].add(dst);
+//            graph[dst].add(src);
         }
 
     }
-
-    public static void bfs(int start) {
-        q.add(start);
-        check[start] = true;
-
-        while(!q.isEmpty()) {
-
-            start = q.poll();
-            sb.append(start + " ");
-
-            for(int i = 1 ; i <= node ; i++) {
-                if(arr[start][i] == 1 && !check[i]) {
-                    q.add(i);
-                    check[i] = true;
-                }
-            }
-        }
-
-
-    }
-
 }
+
+//dfs: 밑으로 탐색하는 것
+//bfs: 옆으로 노드를 탐색하는것
+//연결리스트로 그래프를 구현하는것 : 각 리스트별로 또 안에 리스트를 구현하는것
