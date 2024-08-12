@@ -13,24 +13,15 @@ public class 멀리_뛰기 {
         System.out.print(ans);
     }
     public static long solution(int n){
-        long answer = 0;
-        int quo2 = n / 2;
-        for(int i=0; i<=quo2; i++){ //2의 몫이 0~B일 때까지
-            int quo1 = n - 2*i;
-            int sumOf2 = n - i;
-            answer += (factorial(sumOf2)) / (factorial(quo1) * factorial(i));
+        long[] dp = new long[n+1]; // 1과 2 이하의 수의 합으로 이루어진 배열
+        if(n == 1) return 1;
+        dp[1] = 1;
+        dp[2] = 2;
+        for(int i=3; i<=n; i++){
+            dp[i] = dp[i-1] + dp[i-2];
         }
-
-        return answer;
+        return dp[n];
     }
-    public static long factorial(int K){
-        long ans = 1;
-        for(int i=1; i<=K; i++){
-            ans *= i;
-        }
-        return ans;
-    }
-
 }
 
 /* 4 => 2 2 / 2 1 1 / 1 1 1 1  (1 + 3!/2! + 1) = 5
