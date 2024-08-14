@@ -20,27 +20,20 @@ public class 큰_수_만들기 {
         for(int i=0; i<number.length(); i++){
             arr[i] = number.charAt(i) - '0';
         }
-        for(int i=0; i<number.length()-k; i++){
-            int cnt = number.length()-k; // 선택해야하는 숫자 개수
-            StringBuilder sb = new StringBuilder();
-            dfs(cnt, i, sb);
+        int pick = number.length() - k; // 선택해야하는 숫자개수
+        StringBuilder sb = new StringBuilder();
+        int startIndex = 0;
+        for(int i=0; i<pick; i++){
+            int max = 0;
+            for(int j= startIndex; j<= k+i; j++){
+                if(arr[j] > max){
+                    max = arr[j];
+                    startIndex = j+1;
+                }
+            }
+            sb.append(max);
         }
-
-        Collections.sort(list, Collections.reverseOrder());
-
-        String answer = list.get(0).toString();
-        return answer;
+        return sb.toString();
     }
-    public static void dfs(int count, int stIndex, StringBuilder sb){
-        if(count == 0){ // 더이상 선택할 숫자가 없을때
-            String num = sb.toString();
-            list.add(Integer.parseInt(num));
-            return;
-        }
-        sb.append(arr[stIndex]);
-        for(int i=stIndex+1; i<arr.length; i++){
-            count --;
-            dfs(count, i, sb);
-        }
-    }
+
 }
