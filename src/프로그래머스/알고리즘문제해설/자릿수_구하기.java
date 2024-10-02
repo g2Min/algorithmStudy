@@ -1,4 +1,4 @@
-package 프로그래머스;
+package 프로그래머스.알고리즘문제해설;
 
 import java.io.BufferedReader;
 import java.io.IOException;
