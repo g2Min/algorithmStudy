@@ -8,6 +8,8 @@ import java.util.StringTokenizer;
 
 public class 싸이클 {
     static int N, P;
+    static int[] visited;
+    static int ans;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -15,21 +17,16 @@ public class 싸이클 {
 
         N = Integer.parseInt(st.nextToken());
         P = Integer.parseInt(st.nextToken());
-
-        HashMap<Integer, Integer> map = new HashMap<>();
-        int current = N;
-        int index = 0;
-
-        while (!map.containsKey(current)) {
-            map.put(current, index);  // 숫자와 해당 인덱스 저장
-            current = (current * N) % P;
-            index++;
+        visited = new int[N+1];
+        dfs(N, 1);
+        System.out.print(ans);
+    }
+    static void dfs(int x, int round){
+        if(visited[x] == 0){ // 아직 방문안한 경우
+            visited[x] = round;
+            dfs((x*N)%P, round+1);
+        }else{
+            ans = round - visited[x];
         }
-
-        // 반복되는 부분의 길이 계산
-        int cycleStartIndex = map.get(current);
-        int cycleLength = index - cycleStartIndex;
-
-        System.out.println(cycleLength);
     }
 }
