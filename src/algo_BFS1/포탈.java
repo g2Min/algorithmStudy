@@ -15,6 +15,26 @@ public class 포탈 {
         X = Integer.parseInt(st.nextToken());
         Y = Integer.parseInt(st.nextToken());
         Queue<Integer> q = new LinkedList<>();
+        int[] dist = new int[20001]; // 0~20000
+        dist[X] = 1;
+        q.offer(X);
 
+        while(!q.isEmpty()){
+            int num = q.poll();
+            if(num+1<=20000 && dist[num+1]==0){
+                dist[num+1] = dist[num]+1;
+                q.offer(num+1);
+            }
+            if(num-1>=0 && dist[num-1]==0){
+                dist[num-1] = dist[num]+1;
+                q.offer(num-1);
+            }
+            if(2*num<=20000 && dist[num*2]==0){
+                dist[num*2] = dist[num]+1;
+                q.offer(num*2);
+            }
+        }
+
+        System.out.print(dist[17]-1);
     }
 }
