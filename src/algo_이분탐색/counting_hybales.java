@@ -23,27 +23,44 @@ public class counting_hybales {
             st = new StringTokenizer(br.readLine());
             int start = Integer.parseInt(st.nextToken());
             int end = Integer.parseInt(st.nextToken());
-            int cnt = 0;
-            for(int k=0; k<N; k++){
-                if(binarySearch(start,end,arr[k])){
-                    cnt++;
-                }
-            }
+            int cnt = countInRange(arr, start, end);
             System.out.println(cnt);
         }
     }
-    static boolean binarySearch(int start, int end, int target){
-        while(start <= end){
-            int mid = start + (end-start)/2;
-            if(mid < target){
-                start++;
-            }else if(mid > target){
-                end--;
-            }else{
-                return true;
-            }
+    static int countInRange(int[] arr, int start, int end) {
+        // start 이상의 값이 처음 나오는 위치
+        int lowerBound = lowerBound(arr, start);
+        // end 이하의 값이 마지막으로 나오는 위치
+        int upperBound = upperBound(arr, end);
 
+        // 범위 내에 있는 원소들의 개수는 upperBound - lowerBound
+        return upperBound - lowerBound;
+    }
+    static int lowerBound(int[] arr, int target){
+        int low = 0;
+        int high = arr.length;
+        while(low < high){
+            int mid = low + (high-low)/2;
+            if(arr[mid] < target){
+                low = mid+1;
+            }else{
+                high = mid;
+            }
         }
-        return false;
+        return low;
+    }
+    static int upperBound(int[] arr, int target){
+        int low = 0;
+        int high = arr.length;
+
+        while(low < high){
+            int mid = low + (high-low)/2;
+            if(arr[mid] <= target){
+                low = mid+1;
+            }else{
+                high = mid;
+            }
+        }
+        return low;
     }
 }
