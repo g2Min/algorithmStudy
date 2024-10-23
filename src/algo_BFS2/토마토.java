@@ -28,8 +28,8 @@ public class 토마토 {
             for(int j=0; j<M; j++){
                 map[i][j] = Integer.parseInt(st.nextToken());
                 if (map[i][j] == 1) {
-                    visited[i][j] = 1; // Mark as visited on day 1 (initial ripe tomatoes)
-                    queue.add(new int[]{i, j}); // Add ripe tomatoes to queue
+                    visited[i][j] = 1;
+                    queue.add(new int[]{i, j});
                 }
             }
         }
