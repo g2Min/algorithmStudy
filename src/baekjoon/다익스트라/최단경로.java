@@ -1,22 +1,20 @@
 package baekjoon.다익스트라;
 
+import org.w3c.dom.Node;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
-class Node{
-    int vertex, cost;
-    Node(int vertex, int cost){
-        this.vertex = vertex;
-        this.cost = cost;
-    }
-//    @Override
-//    public int compareTo(Node other) {
-//        return this.cost - other.cost;
-//    }
-}
 public class 최단경로 {
+    static class Node{
+        int vertex, cost;
+        Node(int vertex, int cost){
+            this.vertex = vertex;
+            this.cost = cost;
+        }
+    }
     static int V, E, K;
     static List<List<Node>> graph;
     static PriorityQueue<Node> pq;
